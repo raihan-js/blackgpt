@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.button-with-arrow::after {
+    content: ' →'; /* Unicode arrow character */
+    /* Optional: Adjust styling as needed */
+}
+
+.button-with-arrow::after {
+    content: ' →'; /* Unicode arrow character */
+}
+.button-with-arrow:hover {
+    background-color: #bfbfbf; /* Light gray background */
+    /* For dark mode */
+    --tw-bg-opacity: 1;
+    background-color: rgba(75, 75, 75, var(--tw-bg-opacity)); /* Slightly darker shade for dark mode */
+}
