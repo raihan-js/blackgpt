@@ -10,12 +10,9 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="{{ secure_asset('build/assets/app-Br4EDtGW.css') }}" rel="stylesheet">
-        <script src="{{ secure_asset('build/assets/app-BMCYRmuW.js') }}"></script>
-
 
         <!-- Scripts -->
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
     <body class="antialiased font-sans dark:bg-gray-900 max-h-[400px] overflow-y-auto
