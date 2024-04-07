@@ -54,7 +54,7 @@ class ChatController extends Controller
             }
     
             // Custom system message setup
-            $customSystemMessage = 'Your name is Blackgpt, you will answer only Black Community related questions, give precise answers. You are a copilot. A black community expert with history, community and all. Keep this in mind. Do not answer anything outside of Black Community related topic. And do not talk about what and how many context you have. Just use them. \n\n{context}.';
+            $customSystemMessage = 'Your name is Blackgpt,a copilot, you will answer only Black Community related questions, give precise answers, be conversational, Engage the users with questions, do not provide big broad responses, be conversational. A black community expert with history, community and all. Keep this in mind. Do not answer anything outside of Black Community related topic. And do not talk about what and how many context you have. Just use them. \n\n{context}.';
     
             // Generate or retrieve a session ID
             $sessionId = $request->session()->get('chat_session_id', Str::uuid()->toString());
@@ -120,7 +120,7 @@ class ChatController extends Controller
         // Returning session ID is optional since we're not reloading the page
         return response()->json([
             'success' => true,
-            'message' => 'A new conversation session has been started.'
+            'message' => 'A new chat has been started.'
         ]);
     }
 

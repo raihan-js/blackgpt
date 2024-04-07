@@ -80,6 +80,13 @@
                     <div class="flex justify-between items-center mb-3">
                         <x-new-chat />
                         <x-conversations />
+                          <button id="stopButton" type="button" class="hidden py-1.5 px-2 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800">
+                            <svg class="size-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FF6347" viewBox="0 0 16 16">
+                                <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"></path>
+                              </svg>
+                            Stop generating
+                        </button>
+                        
                     </div>
                     <x-chat-input />
                 </div>
@@ -265,6 +272,8 @@ $(document).ready(function() {
 
     // Function to create a bubble for AI response and apply typing effect
     function createAITypingBubble(message) {
+        typingAllowed = true; // Reset the flag to allow typing effect
+        $('#stopButton').removeClass('hidden');
         const responseBubbleHtml = `<li class="py-2 sm:py-4">
                     <div class="max-w-4xl px-4 sm:px-6 lg:px-8 mx-auto">
                         <div class="max-w-2xl flex gap-x-2 sm:gap-x-4">
@@ -308,15 +317,22 @@ $(document).ready(function() {
         simulateTypingEffect($('.typing:last'), message, 0); // Apply typing effect to the latest '.typing' element
     }
 
-    // Typing effect simulation function
+    let typingAllowed = true; // Flag to control typing effect
+
     function simulateTypingEffect(element, message, index) {
-        if (index < message.length) {
+        if (index < message.length && typingAllowed) {
             element.text(element.text() + message.charAt(index));
             setTimeout(function() {
                 simulateTypingEffect(element, message, index + 1);
-            }, 15); // Adjust typing speed as needed
+            }, 15); 
         }
     }
+    $('#stopButton').click(function() {
+        typingAllowed = false; // Stop the typing effect
+        $(this).addClass('hidden'); // Optionally, hide the stop button immediately
+    });
+
+
     $('#suggestions').on('click', 'button', function() {
         // Fetch the text from the clicked button and trim it
         var buttonText = $(this).text().trim();
